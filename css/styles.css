@@ -605,7 +605,7 @@ footer {
     min-height: 600px;
     background: 
         linear-gradient(rgba(42, 67, 101, 0.7), rgba(42, 67, 101, 0.3)),
-        url('https://images.unsplash.com/photo-1520512533001-af75c194690b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        url('../images/Pastor\ Omotayo\ 6.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -690,5 +690,35 @@ footer {
     .hero {
         background-attachment: scroll;
         min-height: 500px;
+    }
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo-img {
+    height: 40px; /* Adjust based on your logo proportions */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 20px;
+    }
+    .logo-img {
+        height: 32px;
     }
 }
