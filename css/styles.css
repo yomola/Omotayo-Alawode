@@ -420,89 +420,84 @@ footer {
         height: 300px;
     }
 }
-/* Carousel Styles */
-.carousel-container {
+/* Image Carousel Styles */
+.image-carousel-container {
+    max-width: 800px;
+    margin: 40px auto;
     position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.carousel-slide {
+.image-slides {
     display: flex;
-    width: 100%;
-    height: 400px;
     transition: transform 0.5s ease-in-out;
 }
 
-.carousel-slide img {
+.image-slide {
     min-width: 100%;
-    object-fit: cover;
+    position: relative;
 }
 
-.carousel-btn {
+.image-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-nav {
     position: absolute;
     top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     transform: translateY(-50%);
+    z-index: 10;
+}
+
+.image-nav button {
     background: rgba(0,0,0,0.5);
     color: white;
     border: none;
-    padding: 15px;
+    padding: 12px 15px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 50%;
-    z-index: 10;
-    transition: background 0.3s;
+    margin: 0 10px;
+    transition: all 0.3s;
 }
 
-.carousel-btn:hover {
+.image-nav button:hover {
     background: rgba(0,0,0,0.8);
 }
 
-.prev-btn {
-    left: 10px;
+.image-dots {
+    text-align: center;
+    padding: 15px 0;
 }
 
-.next-btn {
-    right: 10px;
-}
-
-.carousel-dots {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.dot {
+.image-dot {
+    display: inline-block;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.5);
+    background: #ccc;
+    margin: 0 5px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
-.dot.active {
-    background: white;
+.image-dot.active {
+    background: #6A5ACD; /* Your brand purple */
 }
 
-@media (max-width: 768px) {
-    .carousel-slide {
-        height: 300px;
-    }
-}
-
+/* YouTube Video Carousel Styles */
 /* YouTube Video Carousel Styles */
 .video-carousel {
     position: relative;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -518,7 +513,6 @@ footer {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
-    overflow: hidden;
 }
 
 .video-slide iframe {
@@ -533,10 +527,10 @@ footer {
 .video-nav {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     width: 100%;
     display: flex;
     justify-content: space-between;
+    transform: translateY(-50%);
     z-index: 10;
 }
 
@@ -544,9 +538,9 @@ footer {
     background: rgba(0,0,0,0.5);
     color: white;
     border: none;
-    padding: 15px;
+    padding: 12px 15px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 50%;
     margin: 0 10px;
     transition: all 0.3s;
@@ -558,7 +552,7 @@ footer {
 
 .video-dots {
     text-align: center;
-    margin-top: 15px;
+    padding: 15px 0;
 }
 
 .video-dot {
@@ -573,16 +567,16 @@ footer {
 }
 
 .video-dot.active {
-    background: var(--primary-color);
+    background: #8e44ad; /* Purple color */
 }
 
 @media (max-width: 768px) {
     .video-carousel {
-        max-width: 100%;
+        margin: 10px auto;
     }
     
     .video-nav-btn {
-        padding: 10px;
+        padding: 8px 12px;
         font-size: 16px;
     }
 }
