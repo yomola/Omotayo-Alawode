@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Carousel Functionality
+// Image Carousel Functionality
 function initCarousel() {
     const carouselSlide = document.querySelector('.carousel-slide');
     const carouselImages = document.querySelectorAll('.carousel-slide img');
@@ -146,4 +146,88 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add this line to initialize the carousel
     initCarousel();
+});
+
+//This is for video carousel functionality
+// YouTube Video Carousel Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelector('.video-slides');
+    const slideItems = document.querySelectorAll('.video-slide');
+    const prevBtn = document.querySelector('.prev-video');
+    const nextBtn = document.querySelector('.next-video');
+    const dotsContainer = document.querySelector('.video-dots');
+    
+    let currentIndex = 0;
+    const slideCount = slideItems.length;
+    
+    // Create dots
+    slideItems.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('video-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+        });
+        dotsContainer.appendChild(dot);
+    });
+    const dots = document.querySelectorAll('.video-dot');
+    
+    // Set initial position
+    updateCarousel();
+    
+    // Next button
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateCarousel();
+    });
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateCarousel();
+    });
+    
+    // Auto-advance (optional)
+    let slideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateCarousel();
+    }, 8000);
+    
+    // Pause on hover
+    const carousel = document.querySelector('.video-carousel');
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateCarousel();
+        }, 8000);
+    });
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+    
+    // Update carousel display
+    function updateCarousel() {
+        slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        slides.style.transition = 'none';
+        slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+        setTimeout(() => {
+            slides.style.transition = 'transform 0.5s ease-in-out';
+        });
+    });
 });
