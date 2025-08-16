@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // ======================
-    // Video Carousel Function
+    // Video Carousel (No Auto-Rotation)
     // ======================
     const initVideoCarousel = () => {
         const slides = document.querySelector('.video-slides');
@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let currentIndex = 0;
         const slideCount = slideItems.length;
-        let slideInterval;
         
         // Create navigation dots
         const createDots = () => {
@@ -43,42 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         };
         
-        // Start auto-rotation
-        const startAutoSlide = () => {
-            slideInterval = setInterval(() => {
-                currentIndex = (currentIndex + 1) % slideCount;
-                updateCarousel();
-            }, 8000); // Rotate every 8 seconds
-        };
-        
         // Initialize
         createDots();
         updateCarousel();
-        startAutoSlide();
         
         // Event listeners
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % slideCount;
             updateCarousel();
-            resetAutoSlide();
         });
         
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + slideCount) % slideCount;
             updateCarousel();
-            resetAutoSlide();
         });
-        
-        // Reset timer on interaction
-        const resetAutoSlide = () => {
-            clearInterval(slideInterval);
-            startAutoSlide();
-        };
-        
-        // Pause on hover
-        const carousel = document.querySelector('.video-carousel');
-        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
-        carousel.addEventListener('mouseleave', startAutoSlide);
         
         // Handle window resize
         window.addEventListener('resize', () => {
@@ -91,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // ======================
-    // Image Carousel Function
+    // Image Carousel (With Auto-Rotation)
     // ======================
     const initImageCarousel = () => {
         const slides = document.querySelector('.image-slides');
@@ -184,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // ======================
-    // Testimonial Slider
+    // Testimonial Slider (Auto-Rotation)
     // ======================
     const initTestimonialSlider = () => {
         const testimonials = document.querySelectorAll('.testimonial');
