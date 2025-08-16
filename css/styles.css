@@ -328,31 +328,35 @@ footer {
 }
 
 /* About WAS Section */
-.about-was {
-    background-color: white;
-}
-
 .about-was-content {
     display: flex;
-    align-items: center;
-    gap: 50px;
+    align-items: flex-start; /* Align items at the top */
+    gap: 40px; /* Space between text and video */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 .about-was-text {
     flex: 1;
+    min-width: 300px; /* Prevent text from becoming too narrow */
 }
 
-.about-was-image {
+.video-carousel {
     flex: 1;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-width: 300px; /* Prevent video from becoming too narrow */
+    max-width: 600px; /* Limit maximum width */
+    margin: 0; /* Remove auto margin since flex handles positioning */
 }
 
-.about-was-image img {
-    width: 100%;
-    height: auto;
-    display: block;
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .about-was-content {
+        flex-direction: column;
+    }
+    
+    .video-carousel {
+        max-width: 100%; /* Full width on mobile */
+        margin-top: 30px; /* Space between text and video */
+    }
 }
 
 /* Programs Section */
@@ -493,7 +497,6 @@ footer {
 }
 
 /* YouTube Video Carousel Styles */
-/* YouTube Video Carousel Styles */
 .video-carousel {
     position: relative;
     max-width: 800px;
@@ -501,11 +504,13 @@ footer {
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: #000; /* Black background for loading state */
 }
 
 .video-slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%;
 }
 
 .video-slide {
@@ -513,6 +518,7 @@ footer {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
+    flex-shrink: 0;
 }
 
 .video-slide iframe {
@@ -522,6 +528,7 @@ footer {
     width: 100%;
     height: 100%;
     border: none;
+    background: #000; /* Black background while loading */
 }
 
 .video-nav {
@@ -531,7 +538,8 @@ footer {
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: 2; /* Ensure buttons stay above videos */
+    pointer-events: none; /* Allow clicking through to video */
 }
 
 .video-nav-btn {
@@ -544,6 +552,8 @@ footer {
     border-radius: 50%;
     margin: 0 10px;
     transition: all 0.3s;
+    pointer-events: auto; /* Re-enable clicks for buttons */
+    z-index: 3;
 }
 
 .video-nav-btn:hover {
@@ -553,6 +563,8 @@ footer {
 .video-dots {
     text-align: center;
     padding: 15px 0;
+    position: relative;
+    z-index: 2;
 }
 
 .video-dot {
@@ -567,16 +579,22 @@ footer {
 }
 
 .video-dot.active {
-    background: #8e44ad; /* Purple color */
+    background: #8e44ad;
 }
 
 @media (max-width: 768px) {
     .video-carousel {
         margin: 10px auto;
+        border-radius: 0;
     }
     
     .video-nav-btn {
         padding: 8px 12px;
         font-size: 16px;
     }
+    
+    .video-slide {
+        padding-bottom: 56.25%; /* Maintain aspect ratio on mobile */
+    }
 }
+
