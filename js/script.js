@@ -222,3 +222,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initContactForm();
 });
+// Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+}
+
+// Close menu when clicking on a link
+const navLinks = document.querySelectorAll('nav ul li a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+    });
+});
