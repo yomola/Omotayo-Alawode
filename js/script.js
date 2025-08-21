@@ -9,13 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.querySelector('.next-video');
         const dotsContainer = document.querySelector('.video-dots');
         
-        // Exit if elements don't exist
         if (!slides || slideItems.length === 0) return;
         
         let currentIndex = 0;
         const slideCount = slideItems.length;
         
-        // Create navigation dots
         const createDots = () => {
             slideItems.forEach((_, index) => {
                 const dot = document.createElement('span');
@@ -26,27 +24,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         };
         
-        // Update carousel position
         const updateCarousel = () => {
             slides.style.transform = `translateX(${-currentIndex * 100}%)`;
-            
-            // Update dots
             document.querySelectorAll('.video-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
         };
         
-        // Go to specific slide
         const goToSlide = (index) => {
             currentIndex = index;
             updateCarousel();
         };
         
-        // Initialize
         createDots();
         updateCarousel();
         
-        // Event listeners
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % slideCount;
             updateCarousel();
@@ -57,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         });
         
-        // Handle window resize
         window.addEventListener('resize', () => {
             slides.style.transition = 'none';
             slides.style.transform = `translateX(${-currentIndex * 100}%)`;
@@ -68,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // ======================
-    // Image Carousel (With Auto-Rotation)
+    // Image Carousel (Auto-Rotation)
     // ======================
     const initImageCarousel = () => {
         const slides = document.querySelector('.image-slides');
@@ -77,14 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.querySelector('.image-next-btn');
         const dotsContainer = document.querySelector('.image-dots');
         
-        // Exit if elements don't exist
         if (!slides || slideItems.length === 0) return;
         
         let currentIndex = 0;
         const slideCount = slideItems.length;
         let slideInterval;
         
-        // Create navigation dots
         const createDots = () => {
             slideItems.forEach((_, index) => {
                 const dot = document.createElement('span');
@@ -95,36 +84,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         };
         
-        // Update carousel position
         const updateCarousel = () => {
             slides.style.transform = `translateX(${-currentIndex * 100}%)`;
-            
-            // Update dots
             document.querySelectorAll('.image-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
         };
         
-        // Go to specific slide
         const goToSlide = (index) => {
             currentIndex = index;
             updateCarousel();
         };
         
-        // Start auto-rotation
         const startAutoSlide = () => {
             slideInterval = setInterval(() => {
                 currentIndex = (currentIndex + 1) % slideCount;
                 updateCarousel();
-            }, 5000); // Rotate every 5 seconds
+            }, 5000);
         };
         
-        // Initialize
         createDots();
         updateCarousel();
         startAutoSlide();
         
-        // Event listeners
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % slideCount;
             updateCarousel();
@@ -137,20 +119,17 @@ document.addEventListener('DOMContentLoaded', function() {
             resetAutoSlide();
         });
         
-        // Reset timer on interaction
         const resetAutoSlide = () => {
             clearInterval(slideInterval);
             startAutoSlide();
         };
         
-        // Pause on hover
         const carousel = document.querySelector('.image-carousel-container');
         if (carousel) {
             carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
             carousel.addEventListener('mouseleave', startAutoSlide);
         }
         
-        // Handle window resize
         window.addEventListener('resize', () => {
             slides.style.transition = 'none';
             slides.style.transform = `translateX(${-currentIndex * 100}%)`;
@@ -170,13 +149,10 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         
         const showTestimonial = (index) => {
-            testimonials.forEach(testimonial => {
-                testimonial.classList.remove('active');
-            });
+            testimonials.forEach(t => t.classList.remove('active'));
             testimonials[index].classList.add('active');
         };
         
-        // Auto-rotate every 5 seconds
         setInterval(() => {
             currentIndex = (currentIndex + 1) % testimonials.length;
             showTestimonial(currentIndex);
@@ -201,28 +177,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
-    // ======================
-    // Form Handling
-    // ======================
-    const initContactForm = () => {
-        const contactForm = document.getElementById('contactForm');
-        if (!contactForm) return;
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
-    };
-
     // Initialize all components
     initVideoCarousel();
     initImageCarousel();
     initTestimonialSlider();
     initSmoothScrolling();
-    initContactForm();
 });
-// Mobile menu toggle
+
+// ======================
+// Mobile Menu Toggle
+// ======================
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('nav ul');
 
@@ -233,9 +197,7 @@ if (menuToggle) {
     });
 }
 
-// Close menu when clicking on a link
-const navLinks = document.querySelectorAll('nav ul li a');
-navLinks.forEach(link => {
+document.querySelectorAll('nav ul li a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         menuToggle.classList.remove('active');
