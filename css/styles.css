@@ -56,11 +56,15 @@ a.external-link::after {
     cursor: pointer;
 }
 
-.btn:hover,.social-icons a:hover {
+.btn:hover {
     background-color: var(--accent);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     text-decoration: none;
+}
+.social-icons a:hover{
+    color: var(--accent);
+    transform: translateY(-3px);
 }
 
 .container {
