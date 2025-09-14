@@ -63,7 +63,7 @@ a.external-link::after {
     text-decoration: none;
 }
 .social-icons a:hover{
-    color: var(--accent);
+    color: var(--secondary);
     transform: translateY(-3px);
 }
 
