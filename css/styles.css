@@ -173,6 +173,12 @@ nav ul li a {
     padding-top: 80px;
 }
 
+.index{
+    background: 
+        linear-gradient(rgba(42, 67, 101, 0.7), rgba(42, 67, 101, 0.3)),
+        url('/images/2.webp');
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
