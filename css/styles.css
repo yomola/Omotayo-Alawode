@@ -427,7 +427,7 @@ footer {
 /* WAS-specific styles */
 /* Hero Section - Custom for WAS */
 .was-hero {
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), 
+    background: linear-gradient(rgba(71, 13, 138, 0.8), rgba(255,255,255,0.8)), 
                 url('/images/awoke.webp');
     height: 80vh;
 }
